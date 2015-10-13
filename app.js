@@ -41,3 +41,34 @@ app.controller('ImpostoController', function(){
 	}
 
 });
+
+app.controller('ReviewController', function(){
+
+	this.estrelas = "";
+
+	this.corpo = "";
+
+	this.autor = "";
+
+	this.reviews = [
+		{
+			"estrelas": 5,
+			"corpo": "Doido",
+			"autor": "Ze Cu"
+		}
+	];
+
+	this.submeterReview = function(){
+		this.reviews.push(
+			{
+				"estrelas": this.estrelas,
+				"corpo": this.corpo,
+				"autor": this.autor
+			}
+		);
+		this.estrelas="";
+		this.corpo="";
+		this.autor="";
+	}
+
+});
