@@ -23,3 +23,21 @@ app.controller('TemperaturaController', function() {
   }
 
 });
+
+app.controller('ImpostoController', function(){
+
+	this.salario = 100;
+
+	this.calculaImposto = function(salario){
+
+		if(salario < 2000) {
+			return (salario/100) * 10;
+		} else if(salario >= 2000 && salario <= 3500){
+			return (salario/100) * 20;
+		}
+
+		return (salario/100) * 30;
+
+	}
+
+});

@@ -15,5 +15,14 @@
       Kelvin: {{tempCtrl.celsiusToKelvin(tempCtrl.celsius)}} <br>
       Farenheit: {{tempCtrl.celsiusToFarenheit(tempCtrl.celsius)}} <br>
     </div>
+
+    <div ng-controller="ImpostoController as ctrl">
+      <p>
+        Salário: <input type="number" min="0" ng-model="ctrl.salario">
+      </p>
+      <p>
+        <b>Imposto:</b> {{ctrl.calculaImposto(ctrl.salario) | currency: "R$ "}}
+      </p>
+    </div>
   </body>
 </html>
