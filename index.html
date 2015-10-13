@@ -84,15 +84,15 @@
         		<tr ng-repeat="contato in ctrl.contatos">
         			<td ng-init="alterarNome" ng-mouseover="alterarNome=true" ng-mouseleave="alterarNome=false">
         				<span ng-hide="alterarNome" ng-bind="contato.nome"></span>
-        				<input ng-show="alterarNome" ng-value="contato.nome">
+        				<input ng-show="alterarNome" ng-model="contato.nome">
         			</td>
         			<td ng-init="alterarEndereco" ng-mouseover="alterarEndereco=true" ng-mouseleave="alterarEndereco=false">
         				<span ng-hide="alterarEndereco" ng-bind="contato.endereco"></span>
-        				<input ng-show="alterarEndereco" ng-value="contato.endereco">
+        				<input ng-show="alterarEndereco" ng-model="contato.endereco">
         			</td>
         			<td ng-init="alterarTelefone" ng-mouseover="alterarTelefone=true" ng-mouseleave="alterarTelefone=false">
         				<span ng-hide="alterarTelefone" ng-bind="contato.telefone"></span>
-        				<input ng-show="alterarTelefone" ng-value="contato.telefone">
+        				<input ng-show="alterarTelefone" ng-model="contato.telefone">
         			</td>
         			<td>
         				<button ng-click="ctrl.removeContato(contato)">Excluir</button>
