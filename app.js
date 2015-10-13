@@ -72,3 +72,27 @@ app.controller('ReviewController', function(){
 	}
 
 });
+
+app.controller('ContatoController', function(){
+
+	this.idCount=0;
+
+	this.novoContato = {};
+
+	this.contatos = [];
+
+	this.adicionaContato = function() {
+		this.novoContato.id = ++this.idCount;
+		this.contatos.push(this.novoContato);
+		this.novoContato = {};
+	};
+
+	this.removeContato = function(contato){
+		for (var i = this.contatos.length - 1; i >= 0; i--) {
+			if(this.contatos[i].id == contato.id){
+				this.contatos.splice(i, 1);
+			}
+		};
+	};
+
+});

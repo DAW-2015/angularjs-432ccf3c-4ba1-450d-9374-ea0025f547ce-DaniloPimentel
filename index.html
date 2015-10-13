@@ -1,66 +1,105 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
-	  <head>
-	    <meta charset="utf-8">
-	    <title>Exercício AngularJS: Controllers</title>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício AngularJS: Controllers</title>
 
-	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
-	    <script src="app.js"></script>
-	  </head>
-	  <body>
-	    <h2>Exercício 1</h2>
-	    <div ng-controller="TemperaturaController as tempCtrl">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <h2>Exercício 1</h2>
+        <div ng-controller="TemperaturaController as tempCtrl">
 
-	      <h2>Conversor de temperatura</h2>
-	      Celsius: <input type="text" ng-model="tempCtrl.celsius"> <br>
-	      Kelvin: {{tempCtrl.celsiusToKelvin(tempCtrl.celsius)}} <br>
-	      Farenheit: {{tempCtrl.celsiusToFarenheit(tempCtrl.celsius)}} <br>
-	    </div>
+            <h2>Conversor de temperatura</h2>
+            Celsius: <input type="text" ng-model="tempCtrl.celsius"> <br>
+            Kelvin: {{tempCtrl.celsiusToKelvin(tempCtrl.celsius)}} <br>
+            Farenheit: {{tempCtrl.celsiusToFarenheit(tempCtrl.celsius)}} <br>
+        </div>
 
-	    <h2>Exercício 2</h2>
-	    <div ng-controller="ImpostoController as ctrl">
-	      <p>
-	        Salário: <input type="number" min="0" ng-model="ctrl.salario">
-	      </p>
-	      <p>
-	        <b>Imposto:</b> {{ctrl.calculaImposto(ctrl.salario) | currency: "R$ "}}
-	      </p>
-	    </div>
+        <h2>Exercício 2</h2>
+        <div ng-controller="ImpostoController as ctrl">
+            <p>
+                Salário: <input type="number" min="0" ng-model="ctrl.salario">
+            </p>
+            <p>
+                <b>Imposto:</b> {{ctrl.calculaImposto(ctrl.salario) | currency: "R$ "}}
+            </p>
+        </div>
 
-	    <h2>Exercício 3</h2>
-	    <div ng-controller="ReviewController as ctrl">
+        <h2>Exercício 3</h2>
+        <div ng-controller="ReviewController as ctrl">
 
-	      <h3>Reviews</h3>
-	      <blockquote ng-repeat="review in ctrl.reviews">
-	        <b>Estrelas: {{review.estrelas}}</b>
-	        <p>{{review.corpo}}</p>
-	        <cite>{{review.autor}}</cite>
-	      </blockquote>
+            <h3>Reviews</h3>
+            <blockquote ng-repeat="review in ctrl.reviews">
+                <b>Estrelas: {{review.estrelas}}</b>
+                <p>{{review.corpo}}</p>
+                <cite>{{review.autor}}</cite>
+            </blockquote>
 
-	      <blockquote>
-	        <b>Estrelas: {{ctrl.estrelas}}</b>
-	        <p>{{ctrl.corpo}}</p>
-	        <cite>{{ctrl.autor}}</cite>
-	      </blockquote>
+            <blockquote>
+                <b>Estrelas: {{ctrl.estrelas}}</b>
+                <p>{{ctrl.corpo}}</p>
+                <cite>{{ctrl.autor}}</cite>
+            </blockquote>
 
-	      <form ng-submit="ctrl.submeterReview()">
-	        <h4>Give your review!</h4>
-	        <p>
-	          <select ng-model="ctrl.estrelas">
-	            <option ng-repeat="n in [1, 2, 3, 4, 5]" ng-bind="n" value="{{n}}"></option>
-	          </select>
-	        </p>
-	        <p>
-	          <textarea ng-model="ctrl.corpo">
+            <form ng-submit="ctrl.submeterReview()">
+                <h4>Give your review!</h4>
+                <p>
+                    <select ng-model="ctrl.estrelas">
+                        <option ng-repeat="n in [1, 2, 3, 4, 5]" ng-bind="n" value="{{n}}"></option>
+                    </select>
+                </p>
+                <p>
+                    <textarea ng-model="ctrl.corpo">
 	            
-	          </textarea>
-	        </p>
-	        <p>
-	          <input ng-model="ctrl.autor">
-	        </p>
-	        <button type="submit">Submit</button>
-	    </form>
+                    </textarea>
+                </p>
+                <p>
+                    <input ng-model="ctrl.autor">
+                </p>
+                <button type="submit">Submit</button>
+            </form>
 
-	    </div>
-	  </body>
+        </div>
+
+        <h2>Exercício 4</h2>
+        <div ng-controller="ContatoController as ctrl">
+      		
+        	<h3>Novo Contato</h3>
+        	<form ng-submit="ctrl.adicionaContato()">
+        		<p>
+        			Nome: <input type="text" ng-model="ctrl.novoContato.nome" required>		
+        		</p>
+        		<p>
+        			Endereco: <input type="text" ng-model="ctrl.novoContato.endereco" required>		
+        		</p>
+        		<p>
+        			Telefone: <input type="text" ng-model="ctrl.novoContato.telefone" required>		
+        		</p>
+        		<button type="submit">Adicionar</button>
+        	</form>
+        	
+        	<table>
+        		<tr ng-repeat="contato in ctrl.contatos">
+        			<td ng-init="alterarNome" ng-mouseover="alterarNome=true" ng-mouseleave="alterarNome=false">
+        				<span ng-hide="alterarNome" ng-bind="contato.nome"></span>
+        				<input ng-show="alterarNome" ng-value="contato.nome">
+        			</td>
+        			<td ng-init="alterarEndereco" ng-mouseover="alterarEndereco=true" ng-mouseleave="alterarEndereco=false">
+        				<span ng-hide="alterarEndereco" ng-bind="contato.endereco"></span>
+        				<input ng-show="alterarEndereco" ng-value="contato.endereco">
+        			</td>
+        			<td ng-init="alterarTelefone" ng-mouseover="alterarTelefone=true" ng-mouseleave="alterarTelefone=false">
+        				<span ng-hide="alterarTelefone" ng-bind="contato.telefone"></span>
+        				<input ng-show="alterarTelefone" ng-value="contato.telefone">
+        			</td>
+        			<td>
+        				<button ng-click="ctrl.removeContato(contato)">Excluir</button>
+        			</td>
+        		</tr>
+        	</table>
+
+        </div>
+    </body>
 </html>
